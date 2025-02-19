@@ -27,6 +27,7 @@ class UserManager(BaseUserManager):
         user = self.model(email=email, first_name=first_name, last_name= last_name, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+        return user
         
         
     def create_superuser(self, email, first_name, last_name, password, **extra_fields):
@@ -39,7 +40,7 @@ class UserManager(BaseUserManager):
         
         if extra_fields.get("is_superuser") is not True:
             raise ValueError(_("is superuser must be true for admin user"))
-        
+
         user = self.create_user(email, first_name, last_name, password, **extra_fields)
         user.save(using = self._db)
         return user
@@ -61,7 +62,9 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
-    
+    @property
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
     
     
     

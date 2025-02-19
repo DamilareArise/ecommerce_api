@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status, viewsets
 from rest_framework.generics import GenericAPIView, CreateAPIView
 from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
@@ -62,7 +63,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     parser_classes = [MultiPartParser, FormParser]
-    # permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAuthenticated]
     
 
 # using GenericAPIView
@@ -70,7 +71,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 class productView(GenericAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         products = Product.objects.all()
