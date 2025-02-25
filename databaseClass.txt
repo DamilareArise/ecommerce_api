@@ -1,0 +1,142 @@
+CREATE TABLE user_table(id INT AUTO_INCREMENT PRIMARY KEY, fullname VARCHAR(50), email VARCHAR(50) UNIQUE, address VARCHAR(255), date_created DATETIME DEFAULT CURRENT_TIMESTAMP);
+
+INSERT INTO user_table(fullname, email, address) VALUES
+    ('John Doe', 'johndoe@example.com', '123 Main St, Springfield, IL, 62701'),
+    ('Jane Smith', 'janesmith@example.com', '456 Elm St, Shelbyville, IL, 62702'),
+    ('Alice Johnson', 'alicejohnson@example.com', '789 Oak St, Capital City, IL, 62703'),
+    ('Bob Brown', 'bobbrown@example.com', '101 Pine St, Ogdenville, IL, 62704'),
+    ('Charlie Davis', 'charliedavis@example.com', '202 Maple St, North Haverbrook, IL, 62705'),
+    ('Diana Evans', 'dianaevans@example.com', '303 Birch St, Brockway, IL, 62706'),
+    ('Eve Wilson', 'evewilson@example.com', '404 Cedar St, Springfield, IL, 62707'),
+    ('Frank Moore', 'frankmoore@example.com', '505 Walnut St, Shelbyville, IL, 62708'),
+    ('Grace Taylor', 'gracetaylor@example.com', '606 Spruce St, Capital City, IL, 62709'),
+    ('Hank White', 'hankwhite@example.com', '707 Cherry St, Ogdenville, IL, 62710')
+
+
+CREATE TABLE product_table(
+    id INT PRIMARY KEY AUTO_INCREMENT, 
+    name VARCHAR(50), 
+    quantity INT, 
+    price FLOAT, 
+    approved BOOLEAN DEFAULT False,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user_table(id) ON DELETE CASCADE
+);
+
+
+ALTER TABLE product_table ADD COLUMN date_created DATETIME DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE product_table CHANGE user_id created_by INT;
+
+INSERT INTO product_table(name, quantity, price, approved, created_by) VALUES
+('Laptop', 10, 999.99, 1, 1),
+('Smartphone', 25, 499.99, 0, 2),
+('Tablet', 15, 299.99, 1, 3),
+('Headphones', 50, 99.99, 1, 4),
+('Keyboard', 30, 49.99, 0, 5),
+('Mouse', 40, 29.99, 1, 6),
+('Monitor', 20, 199.99, 0, 7),
+('Printer', 10, 149.99, 1, 8),
+('External Hard Drive', 35, 89.99, 0, 9),
+('USB Flash Drive', 100, 19.99, 1, 10),
+('Smartwatch', 20, 199.99, 1, 1),
+('Bluetooth Speaker', 30, 79.99, 0, 2),
+('Gaming Console', 15, 499.99, 1, 3),
+('Camera', 10, 599.99, 0, 4),
+('Drone', 5, 799.99, 1, 5),
+('Projector', 8, 299.99, 0, 6),
+('Router', 25, 89.99, 1, 7),
+('Smart Bulb', 50, 19.99, 0, 8),
+('Fitness Tracker', 40, 99.99, 1, 9),
+('E-Reader', 15, 129.99, 0, 10),
+('Power Bank', 60, 39.99, 1, 1),
+('Wireless Earbuds', 35, 149.99, 0, 2),
+('Hard Drive', 20, 89.99, 1, 3),
+('SSD', 25, 129.99, 0, 4),
+('Graphics Card', 10, 699.99, 1, 5),
+('Motherboard', 12, 199.99, 0, 6),
+('CPU', 8, 299.99, 1, 7),
+('RAM', 30, 99.99, 0, 8),
+('Cooling Fan', 40, 29.99, 1, 9),
+('Webcam', 25, 59.99, 0, 10),
+('Microphone', 15, 79.99, 1, 1),
+('External SSD', 10, 199.99, 0, 2),
+('Smart Thermostat', 20, 149.99, 1, 3),
+('Smart Lock', 15, 129.99, 0, 4),
+('Smart Plug', 30, 29.99, 1, 5),
+('Smart Display', 10, 199.99, 0, 6),
+('Smart Hub', 5, 99.99, 1, 7),
+('Smart Scale', 20, 49.99, 0, 8),
+('Smart Doorbell', 15, 199.99, 1, 9),
+('Smart Security Camera', 10, 149.99, 0, 10),
+('Smart Vacuum', 8, 299.99, 1, 1),
+('Smart Oven', 5, 499.99, 0, 2),
+('Smart Fridge', 3, 999.99, 1, 3),
+('Smart Washer', 4, 799.99, 0, 4),
+('Smart Dryer', 4, 699.99, 1, 5),
+('Smart Dishwasher', 5, 599.99, 0, 6),
+('Smart Air Purifier', 10, 199.99, 1, 7),
+('Smart Humidifier', 15, 99.99, 0, 8),
+('Smart Dehumidifier', 10, 149.99, 1, 9),
+('Smart Fan', 20, 79.99, 0, 10),
+('Smart Light Strip', 30, 49.99, 1, 1),
+('Smart Curtains', 10, 199.99, 0, 2),
+('Smart Blinds', 15, 149.99, 1, 3),
+('Smart Mirror', 5, 299.99, 0, 4),
+('Smart Toilet', 3, 499.99, 1, 5),
+('Smart Shower', 4, 399.99, 0, 6),
+('Smart Faucet', 5, 199.99, 1, 7),
+('Smart Grill', 8, 299.99, 0, 8),
+('Smart Coffee Maker', 10, 149.99, 1, 9),
+('Smart Toaster', 15, 79.99, 0, 10),
+('Smart Blender', 20, 99.99, 1, 1),
+('Smart Juicer', 10, 129.99, 0, 2),
+('Smart Food Processor', 8, 199.99, 1, 3),
+('Smart Slow Cooker', 12, 149.99, 0, 4),
+('Smart Pressure Cooker', 10, 199.99, 1, 5),
+('Smart Rice Cooker', 15, 99.99, 0, 6),
+('Smart Air Fryer', 20, 149.99, 1, 7),
+('Smart Sous Vide', 10, 199.99, 0, 8),
+('Smart Ice Maker', 5, 299.99, 1, 9),
+('Smart Water Purifier', 8, 199.99, 0, 10),
+('Smart Trash Can', 10, 149.99, 1, 1),
+('Smart Pet Feeder', 15, 99.99, 0, 2),
+('Smart Pet Camera', 20, 129.99, 1, 3),
+('Smart Litter Box', 10, 199.99, 0, 4),
+('Smart Aquarium', 5, 299.99, 1, 5),
+('Smart Garden', 8, 199.99, 0, 6),
+('Smart Sprinkler', 10, 149.99, 1, 7),
+('Smart Weather Station', 15, 99.99, 0, 8),
+('Smart Air Quality Monitor', 10, 199.99, 1, 9),
+('Smart Water Leak Detector', 20, 49.99, 0, 10),
+('Smart Smoke Detector', 15, 99.99, 1, 1),
+('Smart Carbon Monoxide Detector', 10, 129.99, 0, 2),
+('Smart Door Sensor', 20, 29.99, 1, 3),
+('Smart Window Sensor', 15, 39.99, 0, 4),
+('Smart Motion Sensor', 25, 49.99, 1, 5),
+('Smart Glass Break Sensor', 10, 59.99, 0, 6),
+('Smart Siren', 5, 99.99, 1, 7),
+('Smart Keypad', 8, 79.99, 0, 8),
+('Smart Garage Door Opener', 10, 199.99, 1, 9),
+('Smart Car Charger', 15, 149.99, 0, 10);
+
+
+DATA QUERY LANGUAGE
+
+SELECT * FROM `product_table` WHERE price > 300;
+SELECT * FROM `product_table` LIMIT 5;
+SELECT * FROM `product_table` LIMIT 32347243239 OFFSET 5;
+SELECT * FROM `product_table` LIMIT 5, 2423452352342;
+SELECT *, 
+CASE
+	WHEN price > 700 THEN 'expensive'
+    WHEN price > 400 THEN 'minimal'
+    ELSE 'cheap'
+    END AS price_category
+FROM `product_table`
+
+UPDATE product_table SET price_category = 
+CASE
+WHEN price > 700 THEN 'expensive'
+    WHEN price > 400 THEN 'minimal'
+    ELSE 'cheap'
+END;
