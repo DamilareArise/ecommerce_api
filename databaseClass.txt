@@ -140,3 +140,17 @@ WHEN price > 700 THEN 'expensive'
     WHEN price > 400 THEN 'minimal'
     ELSE 'cheap'
 END;
+
+SELECT * FROM `product_table` WHERE  name LIKE 'C%';
+SELECT * FROM `product_table` WHERE name LIKE '%e';
+SELECT * FROM `product_table` WHERE name LIKE 'C%e';
+SELECT * FROM `product_table` WHERE price_category IN ('minimal', 'expensive');
+SELECT * FROM `product_table` WHERE price BETWEEN 500 AND 900;
+SELECT * FROM `product_table` WHERE approved IS false;
+SELECT name, price FROM `product_table` ORDER BY price;
+SELECT name, price FROM `product_table` ORDER BY price DESC;
+SELECT price_category, COUNT(*) AS 'total' FROM `product_table` GROUP BY price_category;
+SELECT SUM(price) AS 'TOTAL PRICE' FROM `product_table`;
+SELECT AVG(price) AS 'AVG PRICE' FROM `product_table`;
+SELECT price_category, AVG(price) as 'AVG.Price' FROM `product_table` GROUP BY price_category;
+SELECT name FROM `product_table` WHERE price = (SELECT MIN(price) FROM product_table);
